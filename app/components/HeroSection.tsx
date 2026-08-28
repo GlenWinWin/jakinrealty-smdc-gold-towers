@@ -1,6 +1,6 @@
 "use client";
 
-import { Plane, Activity, Zap, Building2 } from "lucide-react";
+import { Plane, Activity, Zap, Building2, PhilippinePeso, TrendingUp } from "lucide-react";
 
 interface HeroSectionProps {
   onClaimBrief: () => void;
@@ -9,7 +9,7 @@ interface HeroSectionProps {
 export default function HeroSection({ onClaimBrief }: HeroSectionProps) {
   return (
     <section id="overview" className="relative px-6 pt-24 pb-20 text-center md:pt-32 md:pb-28 overflow-hidden bg-gradient-to-b from-[#071324] via-[#0B1F3A] to-[#071324]">
-      {/* Ambient Glows */}
+      {/* Ambient Radial Glows */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="h-[550px] w-[800px] rounded-full bg-[#C59B27]/10 blur-[160px]" />
         <div className="h-[350px] w-[550px] -translate-y-24 rounded-full bg-[#0080FF]/5 blur-[130px]" />
@@ -17,7 +17,7 @@ export default function HeroSection({ onClaimBrief }: HeroSectionProps) {
 
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]" />
 
-      <div className="relative z-10 mx-auto max-w-4xl">
+      <div className="relative z-10 mx-auto max-w-5xl">
         <div className="inline-flex items-center gap-2.5 border border-[#C59B27]/30 bg-[#C59B27]/10 px-4 py-1.5 rounded-full mb-8 backdrop-blur-md shadow-[inset_0_0_12px_rgba(197,155,39,0.15)]">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#DFB743] opacity-75" />
@@ -54,27 +54,42 @@ export default function HeroSection({ onClaimBrief }: HeroSectionProps) {
           </a>
         </div>
 
-        {/* Quick Highlights */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-white/[0.08] pt-8 max-w-3xl mx-auto text-center">
+        {/* 6-Column Metrics Grid */}
+        <div className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-y-6 gap-x-3 border-t border-white/[0.08] pt-8 mx-auto text-center">
           <div className="flex flex-col items-center">
             <Plane className="h-5 w-5 text-[#DFB743] mb-2" />
-            <div className="text-xl sm:text-2xl font-bold text-[#DFB743]">0.4 km</div>
+            <div className="text-lg sm:text-xl font-bold text-[#DFB743]">0.4 km</div>
             <div className="text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-widest mt-1">To NAIA Terminal 1</div>
           </div>
+
           <div className="flex flex-col items-center border-l border-white/[0.08]">
             <Activity className="h-5 w-5 text-[#DFB743] mb-2" />
-            <div className="text-xl sm:text-2xl font-bold text-[#DFB743]">90%</div>
+            <div className="text-lg sm:text-xl font-bold text-[#DFB743]">90%</div>
             <div className="text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-widest mt-1">Construction Progress</div>
           </div>
-          <div className="flex flex-col items-center border-l border-white/[0.08]">
+
+          <div className="flex flex-col items-center border-l sm:border-l-0 lg:border-l border-white/[0.08]">
             <Zap className="h-5 w-5 text-[#DFB743] mb-2" />
-            <div className="text-xl sm:text-2xl font-bold text-[#DFB743]">100%</div>
+            <div className="text-lg sm:text-xl font-bold text-[#DFB743]">100%</div>
             <div className="text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-widest mt-1">Power Redundancy</div>
           </div>
+
           <div className="flex flex-col items-center border-l border-white/[0.08]">
             <Building2 className="h-5 w-5 text-[#DFB743] mb-2" />
-            <div className="text-xl sm:text-2xl font-bold text-[#DFB743]">2 Towers</div>
-            <div className="text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-widest mt-1">13 Floors • 2,050 Units</div>
+            <div className="text-lg sm:text-xl font-bold text-[#DFB743]">2 Towers</div>
+            <div className="text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-widest mt-1">13 Flrs • 2,050 Units</div>
+          </div>
+
+          <div className="flex flex-col items-center border-l border-white/[0.08]">
+            <PhilippinePeso className="h-5 w-5 text-[#DFB743] mb-2" />
+            <div className="text-lg sm:text-xl font-bold text-[#DFB743]">₱2,500</div>
+            <div className="text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-widest mt-1">Potential / Day</div>
+          </div>
+
+          <div className="flex flex-col items-center border-l border-white/[0.08]">
+            <TrendingUp className="h-5 w-5 text-[#DFB743] mb-2" />
+            <div className="text-lg sm:text-xl font-bold text-[#DFB743]">₱75,000</div>
+            <div className="text-[10px] sm:text-[11px] text-gray-400 uppercase tracking-widest mt-1">Fully Booked / Mo</div>
           </div>
         </div>
       </div>

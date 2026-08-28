@@ -35,26 +35,28 @@ export default function UnitsPricingSection({ onInquire }: UnitsPricingSectionPr
               <h3 className="mt-2 text-xl font-bold text-[#071324]">Studio RESO</h3>
               <div className="my-5 h-px bg-gray-100" />
               <ul className="space-y-3.5 text-xs text-gray-600">
-                <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
+                <li className="flex items-start gap-2.5">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27] mt-0.5">
                     <Check className="h-3 w-3" />
                   </span>
-                  <span><strong>Area:</strong> 20.27 – 20.64 sqm</span>
+                  <span>
+                    <strong>Area:</strong> 20.27 – 20.64 sqm <span className="text-gray-400 font-normal">({`218.19 – 222.17 sq ft`})</span>
+                  </span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
                     <Check className="h-3 w-3" />
                   </span>
                   <span>Max 4 Occupants + 2 Visitors</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
                     <Check className="h-3 w-3" />
                   </span>
                   <span>100% Emergency Back-up Power</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
                     <Check className="h-3 w-3" />
                   </span>
                   <span>Dual Fiber Telecom Redundancy</span>
@@ -88,26 +90,28 @@ export default function UnitsPricingSection({ onInquire }: UnitsPricingSectionPr
               <h3 className="mt-2 text-xl font-bold text-[#071324]">1-Bedroom RESO</h3>
               <div className="my-5 h-px bg-amber-100/70" />
               <ul className="space-y-3.5 text-xs text-gray-600">
-                <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/15 text-[#C59B27]">
+                <li className="flex items-start gap-2.5">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/15 text-[#C59B27] mt-0.5">
                     <Check className="h-3 w-3" />
                   </span>
-                  <span><strong>Area:</strong> 25.58 – 28.67 sqm</span>
+                  <span>
+                    <strong>Area:</strong> 25.58 – 28.67 sqm <span className="text-gray-400 font-normal">({`275.32 – 308.62 sq ft`})</span>
+                  </span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/15 text-[#C59B27]">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/15 text-[#C59B27]">
                     <Check className="h-3 w-3" />
                   </span>
                   <span>Flexible Personal / Office Suite Layout</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/15 text-[#C59B27]">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/15 text-[#C59B27]">
                     <Check className="h-3 w-3" />
                   </span>
                   <span>High Ceilings (~3.0m clearance)</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/15 text-[#C59B27]">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/15 text-[#C59B27]">
                     <Check className="h-3 w-3" />
                   </span>
                   <span>Fitted Kitchen with Cooktop & Hood</span>
@@ -138,26 +142,28 @@ export default function UnitsPricingSection({ onInquire }: UnitsPricingSectionPr
               <h3 className="mt-2 text-xl font-bold text-[#071324]">1-BR End Corner</h3>
               <div className="my-5 h-px bg-gray-100" />
               <ul className="space-y-3.5 text-xs text-gray-600">
-                <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
+                <li className="flex items-start gap-2.5">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27] mt-0.5">
                     <Check className="h-3 w-3" />
                   </span>
-                  <span><strong>Area:</strong> 32.80 sqm</span>
+                  <span>
+                    <strong>Area:</strong> 32.80 sqm <span className="text-gray-400 font-normal">({`353.05 sq ft`})</span>
+                  </span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
                     <Check className="h-3 w-3" />
                   </span>
                   <span>Dual Window Natural Lighting</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
                     <Check className="h-3 w-3" />
                   </span>
                   <span>Unit Combination Eligible</span>
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
+                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#C59B27]/10 text-[#C59B27]">
                     <Check className="h-3 w-3" />
                   </span>
                   <span>Expansive Runway Panorama</span>
