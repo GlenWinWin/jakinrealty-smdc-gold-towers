@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import SmoothScroll from "./components/SmoothScroll";
 import Navigation from "./components/Navigation";
 import HeroSection from "./components/HeroSection";
 import VideoShowCase from "./components/VideoShowCase";
@@ -13,76 +14,7 @@ import YieldShareSection from "./components/YieldShareSection";
 import Footer from "./components/Footer";
 import LeadCaptureModal from "./components/LeadCaptureModal";
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "RealEstateAgent",
-      "@id": "https://jakinrealty.com/#agent",
-      "name": "Jakin Realty",
-      "url": "https://jakinrealty.com",
-      "logo": "https://jakinrealty.com/favicon.ico",
-      "image": "https://jakinrealty.com/og-image.jpg",
-      "description":
-        "Premier real estate advisory specializing in SMDC developments, luxury investments, and RESO commercial properties.",
-      "areaServed": {
-        "@type": "Country",
-        "name": "Philippines",
-      },
-    },
-    {
-      "@type": "RealEstateListing",
-      "@id": "https://jakinrealty.com/#listing",
-      "name": "SMDC Gold Towers RESO",
-      "description":
-        "Dual-purpose Residential-Offices directly across NAIA Terminal 1 in Gold City Township, Parañaque City.",
-      "url": "https://jakinrealty.com",
-      "offers": {
-        "@type": "AggregateOffer",
-        "priceCurrency": "PHP",
-        "lowPrice": "6230000",
-        "highPrice": "10080000",
-        "offerCount": "2050",
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Ninoy Aquino Avenue, Brgy. Sto. Niño",
-        "addressLocality": "Parañaque City",
-        "addressRegion": "Metro Manila",
-        "postalCode": "1700",
-        "addressCountry": "PH",
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "14.5085",
-        "longitude": "121.0003",
-      },
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is RESO in SMDC Gold Towers?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "RESO stands for Residential-Office. It is a dual-purpose zoned space allowing owners to legally operate corporate offices, satellite clinics, or consultation firms while maintaining private residential quarters.",
-          },
-        },
-        {
-          "@type": "Question",
-          "name": "How far is Gold Towers from NAIA Terminal 1?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text":
-              "SMDC Gold Towers is located directly across NAIA Terminal 1 at a distance of 0.4 km along Ninoy Aquino Avenue, Parañaque City.",
-          },
-        },
-      ],
-    },
-  ],
-};
+// ... existing jsonLd object ...
 
 export default function LandingPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -135,49 +67,45 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#071324] font-sans text-white selection:bg-[#C59B27] selection:text-[#071324]">
-      {/* Schema / SEO Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <SmoothScroll>
+      <div className="min-h-screen w-full bg-[#071324] font-sans text-white selection:bg-[#C59B27] selection:text-[#071324]">
+        {/* Navigation */}
+        <Navigation onBookTour={() => openForm()} />
 
-      {/* Navigation */}
-      <Navigation onBookTour={() => openForm()} />
+        {/* Hero Header */}
+        <HeroSection onClaimBrief={() => openForm()} />
 
-      {/* Hero Header */}
-      <HeroSection onClaimBrief={() => openForm()} />
+        {/* Protected Video Showcase */}
+        <VideoShowCase />
 
-      {/* Protected Video Showcase */}
-      <VideoShowCase />
+        {/* Connectivity & Arteries */}
+        <ConnectivitySection />
 
-      {/* Connectivity & Arteries */}
-      <ConnectivitySection />
+        {/* Units & Pricing Inventory */}
+        <UnitsPricingSection onInquire={(unit) => openForm(unit)} />
 
-      {/* Units & Pricing Inventory */}
-      <UnitsPricingSection onInquire={(unit) => openForm(unit)} />
+        {/* Investor Story & OFW Testimonial */}
+        <TestimonialSection />
 
-      {/* Investor Story & OFW Testimonial */}
-      <TestimonialSection />
+        {/* 24/7 Amenities */}
+        <AmenitiesSection />
 
-      {/* 24/7 Amenities */}
-      <AmenitiesSection />
+        {/* Permitted vs Prohibited Rules */}
+        <ComplianceSection />
 
-      {/* Permitted vs Prohibited Rules */}
-      <ComplianceSection />
+        {/* MRR & Viral Share Strip */}
+        <YieldShareSection onShare={handleShare} />
 
-      {/* MRR & Viral Share Strip */}
-      <YieldShareSection onShare={handleShare} />
+        {/* Footer */}
+        <Footer />
 
-      {/* Footer */}
-      <Footer />
-
-      {/* Interactive Lead Capture Modal */}
-      <LeadCaptureModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        defaultUnit={selectedUnit}
-      />
-    </div>
+        {/* Interactive Lead Capture Modal */}
+        <LeadCaptureModal
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          defaultUnit={selectedUnit}
+        />
+      </div>
+    </SmoothScroll>
   );
 }

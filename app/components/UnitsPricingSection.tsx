@@ -1,5 +1,8 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Check } from "lucide-react";
 
 interface UnitsPricingSectionProps {
@@ -7,8 +10,38 @@ interface UnitsPricingSectionProps {
 }
 
 export default function UnitsPricingSection({ onInquire }: UnitsPricingSectionProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      if (cardsRef.current) {
+        gsap.fromTo(
+          cardsRef.current.children,
+          { y: 50, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            stagger: 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="units" className="relative w-full bg-[#F5F2EB] px-6 py-24 text-[#071324]">
+    <section ref={sectionRef} id="units" className="relative w-full bg-[#F5F2EB] px-6 py-24 text-[#071324]">
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#C59B27]/40 to-transparent" />
 
       <div className="mx-auto max-w-6xl">
@@ -24,7 +57,7 @@ export default function UnitsPricingSection({ onInquire }: UnitsPricingSectionPr
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3 items-stretch">
+        <div ref={cardsRef} className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3 items-stretch">
           {/* Studio RESO */}
           <div className="flex flex-col justify-between rounded-2xl border border-gray-200/90 bg-white p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition duration-300 hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(11,31,58,0.08)]">
             <div>
