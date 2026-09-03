@@ -85,7 +85,20 @@ function ModalContent({ isOpen, onClose, defaultUnit }: LeadCaptureModalProps) {
           type: "success",
           msg: "Executive Brief dispatched! Check your email inbox.",
         });
-        setTimeout(() => onClose(), 2500);
+        // Reset the form fields immediately
+        setFormData({
+          email: "",
+          companyName: "",
+          phone: "",
+          propertyName: "SMDC Gold Towers",
+          targetUnitType: defaultUnit || "1-Bedroom RESO (Popular)",
+          preferredFinancing: "Bank Financing",
+        });
+
+        setTimeout(() => {
+          setStatus({ type: null, msg: "" });
+          onClose();
+        }, 2000);
       } else {
         setStatus({
           type: "error",
