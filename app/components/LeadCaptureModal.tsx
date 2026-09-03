@@ -21,15 +21,13 @@ function ModalContent({ isOpen, onClose, defaultUnit }: LeadCaptureModalProps) {
     preferredFinancing: "Bank Financing",
   });
 
-  // Module: Dual VIP Intent Selector
-  const [vipIntent, setVipIntent] = useState<string>("15-Min Zoom Deck Presentation");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{ type: "success" | "error" | null; msg: string }>({
     type: null,
     msg: "",
   });
 
-  // Module: Dynamic pURL Pre-Fill
+  // Dynamic pURL Pre-Fill
   useEffect(() => {
     setFormData((prev) => ({
       ...prev,
@@ -51,22 +49,30 @@ function ModalContent({ isOpen, onClose, defaultUnit }: LeadCaptureModalProps) {
       return;
     }
 
+    if (!formData.companyName.trim()) {
+      setStatus({ type: "error", msg: "Please provide your name or company name." });
+      return;
+    }
+
+    if (!formData.phone.trim()) {
+      setStatus({ type: "error", msg: "Please provide your contact number." });
+      return;
+    }
+
     setLoading(true);
 
     const payload = {
       email: formData.email.trim(),
-      source: "new-lead-website" as const,
-      ...(formData.companyName.trim() && { companyName: formData.companyName.trim() }),
-      ...(formData.phone.trim() && { phone: formData.phone.trim() }),
-      ...(formData.propertyName.trim() && { propertyName: formData.propertyName.trim() }),
-      ...(formData.targetUnitType.trim() && {
-        targetUnitType: `${formData.targetUnitType} [Intent: ${vipIntent}]`,
-      }),
-      ...(formData.preferredFinancing && { preferredFinancing: formData.preferredFinancing }),
+      companyName: formData.companyName.trim(),
+      phone: formData.phone.trim(),
+      propertyName: formData.propertyName.trim(),
+      targetUnitType: formData.targetUnitType.trim(),
+      preferredFinancing: formData.preferredFinancing,
+      source: "new-lead-website",
     };
 
     try {
-      const res = await fetch("https://email-blast-automated.vercel.app/api/leads/capture", {
+      const res = await fetch("https://email-blast-automated.vercel.app/api/inquiries", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -83,7 +89,7 @@ function ModalContent({ isOpen, onClose, defaultUnit }: LeadCaptureModalProps) {
       } else {
         setStatus({
           type: "error",
-          msg: data.message || "Failed to submit. Please check your details.",
+          msg: data.error || data.message || "Failed to submit. Please check your details.",
         });
       }
     } catch {
@@ -109,37 +115,6 @@ function ModalContent({ isOpen, onClose, defaultUnit }: LeadCaptureModalProps) {
         <p className="mt-1 text-xs text-gray-600">SMDC Gold Towers RESO • Direct Central Verification</p>
 
         <form onSubmit={handleSubmit} className="mt-5 space-y-3.5 text-left">
-          {/* Dual VIP Intent Selector */}
-          <div className="rounded-lg bg-white/70 p-3 border border-gray-200">
-            <span className="block text-[11px] font-bold uppercase tracking-wider text-[#0B1F3A] mb-2">
-              Select VIP Access Preference
-            </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-              <label className="flex items-center gap-2 cursor-pointer font-medium">
-                <input
-                  type="radio"
-                  name="vipIntent"
-                  value="15-Min Zoom Deck Presentation"
-                  checked={vipIntent === "15-Min Zoom Deck Presentation"}
-                  onChange={(e) => setVipIntent(e.target.value)}
-                  className="accent-[#C59B27]"
-                />
-                15-Min Zoom Deck
-              </label>
-              <label className="flex items-center gap-2 cursor-pointer font-medium">
-                <input
-                  type="radio"
-                  name="vipIntent"
-                  value="In-Person Showroom Visit"
-                  checked={vipIntent === "In-Person Showroom Visit"}
-                  onChange={(e) => setVipIntent(e.target.value)}
-                  className="accent-[#C59B27]"
-                />
-                Showroom Visit
-              </label>
-            </div>
-          </div>
-
           <div>
             <label className="block text-[11px] font-bold uppercase tracking-wider">
               Corporate / Personal Email <span className="text-red-600">*</span>
@@ -156,9 +131,12 @@ function ModalContent({ isOpen, onClose, defaultUnit }: LeadCaptureModalProps) {
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider">Name / Company</label>
+              <label className="block text-[11px] font-bold uppercase tracking-wider">
+                Name / Company <span className="text-red-600">*</span>
+              </label>
               <input
                 type="text"
+                required
                 value={formData.companyName}
                 onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                 className="mt-1 w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-[#C59B27]"
@@ -166,9 +144,12 @@ function ModalContent({ isOpen, onClose, defaultUnit }: LeadCaptureModalProps) {
               />
             </div>
             <div>
-              <label className="block text-[11px] font-bold uppercase tracking-wider">Phone Number</label>
+              <label className="block text-[11px] font-bold uppercase tracking-wider">
+                Phone Number <span className="text-red-600">*</span>
+              </label>
               <input
                 type="tel"
+                required
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 className="mt-1 w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm outline-none focus:border-[#C59B27]"
